@@ -2,6 +2,11 @@ import NextAuth from "next-auth"
 import GithubProvider from "next-auth/providers/github"
 import jwt from "jsonwebtoken"
 
+import { PrismaAdapter } from "@next-auth/prisma-adapter"
+import { PrismaClient } from "@prisma/client"
+
+const prisma = new PrismaClient();
+
 export const authOptions = {
   // Configure one or more authentication providers
   providers: [
@@ -22,7 +27,9 @@ export const authOptions = {
     async decode({ secret, token }) {
         return jwt.verify(token, secret)
     },
-  }
+  },
+  database: process.env.DATABASE_URL,
+  adapter: PrismaAdapter(prisma)
 }
 
 export default NextAuth(authOptions)
