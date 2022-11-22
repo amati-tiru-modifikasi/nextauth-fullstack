@@ -28,7 +28,6 @@ export const authOptions = {
         return jwt.verify(token, secret)
     },
   },
-  database: process.env.DATABASE_URL,
   adapter: PrismaAdapter(prisma)
 }
 
