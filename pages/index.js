@@ -6,7 +6,6 @@ export default function Component() {
     return (
       <>
         Signed in as {session.user.email} <br />
-        <button onClick={() => fetch('/api/posts',{ method: "POST"})}>Get Session</button>
         <button onClick={() => signOut()}>Sign out</button>
       </>
     )
@@ -14,6 +13,8 @@ export default function Component() {
   return (
     <>
       Not signed in <br />
+      <button onClick={() => fetch('/api/posts',{ method: "POST"})}>Get Session</button>
+
       <button onClick={() => signIn()}>Sign in</button>
     </>
   )
